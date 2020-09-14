@@ -1,0 +1,5 @@
+sheen_green = (113,119,32)    
+paradise_pink = (232,63,111)
+raisin_black =  (25,25,35)
+honeydew = (226,252,239)
+trump_jacket = (8,76,97)
