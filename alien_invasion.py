@@ -1,4 +1,5 @@
 import sys
+import pytest
 from time import sleep
 import pygame
 from pygame import mixer
@@ -14,18 +15,18 @@ from alien import Alien
 
 class AlienInvasion:
     """overall class to manage game assets and behavior"""
-
     
     def __init__(self):
         """initialize the game, and create game resources"""
         pygame.init()
-        pygame.mixer.music.load("sounds/Multiverse.wav")
+        pygame.mixer.music.load("sounds/pl/Before The Night.mp3")
         pygame.mixer.music.play(-1)
+        
         self.bullet_collision = pygame.mixer.Sound("sounds/explosion.wav")
         self.bullet_fire = pygame.mixer.Sound("sounds/itty_8_bitty_laser.wav")
         self.settings = Settings()
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        self.background = pygame.image.load('images/space_4.gif')
+        self.background = pygame.image.load('images/space.jpg')
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
@@ -51,7 +52,7 @@ class AlienInvasion:
 
         # make the play button
         self.play_button = Button(self, "Play")
-        
+
     def _create_fleet(self):
         """create a fleet of aliens"""
         # create an alien and find the number of aliens in a row
@@ -128,7 +129,6 @@ class AlienInvasion:
             # hide the mouse cursor
             pygame.mouse.set_visible(False)
 
-
     def _check_keydown_events(self, event):
         """respond to keypresses"""
         if event.key == pygame.K_RIGHT:
@@ -172,7 +172,6 @@ class AlienInvasion:
         # if so, get rid of the bullet and the alien
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
-        
         
         if collisions:
             pygame.mixer.Sound.play(self.bullet_collision)
